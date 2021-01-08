@@ -1,0 +1,15 @@
+body{
+    height: 100%;
+    margin: 0;
+    
+}
+.header{
+    
+}
+.container{
+    min-height: 100%;
+}
+.footer{
+    height: 50px;
+    margin-top: -50px;
+}
