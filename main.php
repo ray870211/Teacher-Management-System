@@ -119,6 +119,3 @@ if (isset($_SESSION['userID'])){
 
 
 
-<?php } else{
-    echo"<h1 style='text-align: center;color:red;'>Error: You have no permission to access tihs page!</h1>"
-    ?>

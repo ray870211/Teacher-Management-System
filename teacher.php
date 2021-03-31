@@ -11,6 +11,11 @@ include('mysql_connect.php');
 $sql = "select * FROM `teacher` ;";
 $query = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($query);
+
+$sql = "select image from teacher where id={$row['id']}";
+$result = mysqli_query($conn, $sql);
+$item = mysqli_fetch_array($result);
+$image_src2 = $item['image'];
 ?>
 
 <!doctype html>
@@ -37,27 +42,34 @@ $row = mysqli_fetch_assoc($query);
       </div>
     </div>
   <?php endif ?>
-
   <?php if ($row) : ?>
     <div class="container my-2">
       <div class="row mt-5">
-        <div class="col-8 text-center">
-          <h3>周永振 (Yung-Chen Chou) </h3>
-          <h3>亞洲大學 資訊工程學系 多媒體安全實驗室</h3>
-          <h3>研究領域: 數位浮水印, 資訊隱藏, 影像擷取, 資訊安全</h3>
-          <h3>聯絡電話: +886-4-23323456 ext.48005</h3>
-          <h4>傳真: 04-2330-5737</h4>
-          <h4>電子郵件信箱: yungchen@gmail.com </h4>
-          <h3>郵寄地址: 台中市霧峰區柳豐路500號</h3>
-
+        <div class="col-8 text-center text">
+          <h2><?php echo $row['name_c'] . "(" . $row['name_e'] . ")"; ?> </h2>
+          <h3>亞洲大學 <?php echo $row['department_c']; ?></h3>
+          <h3>研究領域: <?php echo $row['research_c'] ?></h3>
+          <h3>傳真: <?php echo $row['fax']; ?></h3>
+          <?php if ($row['is_show_cell_phone'] == 1) {
+            echo "<h3>連絡電話:" .  $row['cell_phone'] . "</h3>";
+          } ?>
+          <?php if ($row['is_show_office_phone'] == 1) {
+            echo "<h3>辦公室電話:" .  $row['office_phone'] . "</h3>";
+          } ?>
+          <?php if ($row['is_show_room_no'] == 1) : ?>
+            <h3>辦公室:<?php echo $row['room_no']; ?></h3>
+          <?php endif ?>
+          <h3>電子郵件信箱:<?php echo $row['email_work']; ?></h3>
+          <h3>郵寄地址: <?php echo $row['post_address_c']; ?></h3>
         </div>
         <div class="col-4">
-          <img src="https://fakeimg.pl/250x300/">
+          <img src="<?php echo $image_src2; ?>" style="height:400px">
         </div>
       </div>
     </div>
   <?php endif ?>
 
+  <a href="add_teacher.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">新增教師</a>
 
 
 

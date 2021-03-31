@@ -1,9 +1,11 @@
 <?php
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
+$email = $_SESSION['email'];
 
 $mail = new PHPMailer(true);
 try {
@@ -11,6 +13,7 @@ try {
     $mail->SMTPDebug = 2;
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
+    $mail->CharSet = "utf-8";
     $mail->SMTPAuth = true;
     $mail->Username = 'test870211test@gmail.com';
     $mail->Password = 'Test12345t';
@@ -30,7 +33,7 @@ try {
     //Content
     $mail->isHTML(true);
     $mail->Subject = '耶成功!';
-    $mail->Body    = '開心';
+    $mail->Body    = $email . '登入網站';
 
     $mail->send();
     echo 'Message has been sent';

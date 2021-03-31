@@ -1,7 +1,7 @@
 body{
     height: 100%;
     margin: 0;
-    
+
 }
 .header{
     
@@ -9,7 +9,13 @@ body{
 .container{
     min-height: 100%;
 }
-.footer{
-    height: 50px;
-    margin-top: -50px;
+.page-footer{
+    width: 100%;
+    /* position: fixed; */
+    bottom: 0;
+    /* height: 100px; */
+}
+.text{
+    background-color:gainsboro;
+    padding: 15px;
 }

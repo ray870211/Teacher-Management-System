@@ -31,28 +31,6 @@ function add()
         $GLOBALS['error_message'] = '請輸入department_e';
         return;
     }
-    if (isset($_POST['file'])) {
-        print_r($_FILES);
-        var_dump($_FILES['file']['error']);
-        $name = $_FILES['file']['name']; //上傳檔案的原始名稱。
-        var_dump($name);
-        $target_dir = "upload/";
-        $target_file = $target_dir . basename($_FILES["file"]["name"]); //basename() 函数返回路径中的文件名部分
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //轉換小寫(取得檔案的副檔名
-        $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-        // Check extension
-        if (in_array($imageFileType, $extensions_arr)) {
-            $GLOBALS['image'] = $name;
-            // Insert record
-
-
-            // Upload file
-            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $name);
-        }
-    }
-
-
     $name_c = $_POST['name_c'];
     $name_e = $_POST['name_e'];
     $phone = $_POST['phone'];
@@ -70,20 +48,38 @@ function add()
     $research_e = $_POST['research_e'];
     $post_address_c = $_POST['post_address_c'];
     $post_address_e = $_POST['post_address_e'];
+    $file_name = $_FILES['file']['name'];
+    $target_dir = "upload/";
+    $target_file = $target_dir . basename($_FILES["file"]["name"]); //取得照片的位置
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //strtolower轉小寫,pathinfo() 函數以數組的形式返回文件路徑的信息。
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+    if ($is_show_phone == NULL) {
+        $is_show_phone = 0;
+    }
+    if ($is_show_office_phone == NULL) {
+        $is_show_office_phone = 0;
+    }
+    if ($is_show_room_no == NULL) {
+        $is_show_room_no = 0;
+    }
 
-
-    include('mysql_connect.php');
-    $sql = "insert into `teacher` values (null,'{$name_c}',
+    if (in_array($imageFileType, $extensions_arr)) {
+        $image_base64 = base64_encode(file_get_contents($_FILES['file']['tmp_name']));
+        $image = 'data:image/' . $imageFileType . ';base64,' . $image_base64;
+        include('mysql_connect.php');
+        $sql = "insert into `teacher` values (null,'{$name_c}',
     '{$name_e}','{$phone}',{$is_show_phone},'{$office_phone}',{$is_show_office_phone},'{$fax}',
     '{$work_email}','{$home_email}','{$room_no}',{$is_show_room_no},'{$department_c}',
     '{$department_e}','{$research_c}','{$research_e}','{$post_address_c}',
-    '{$post_address_e}',$image,null,NOW()
+    '{$post_address_e}','{$image}',null,NOW()
 );";
-    $query = mysqli_query($conn, $sql);
-    var_dump($query);
-    $row = mysqli_fetch_assoc($query);
-    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $name);
-    var_dump($row);
+        $query = mysqli_query($conn, $sql);
+        var_dump($query);
+        $row = mysqli_fetch_assoc($query);
+
+        // Upload file
+        move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $file_name); //檔案放到資料夾裡面
+    }
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     add();
@@ -196,17 +192,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
     <?php script(); ?>
 </body>
 

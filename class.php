@@ -38,42 +38,74 @@ if (isset($_SESSION['type'])) {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">08:00~10:00</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row">08:00~09:00</th>
               <td></td>
               <td></td>
-            </tr>
-            <tr>
-              <th scope="row">08:00~10:00<< /th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">08:00~10:00<< /th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <th scope="row">09:00~10:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>資料庫整合應用開發</td>
+            </tr>
+            <tr>
+              <th scope="row">10:00~11:00</th>
+              <td></td>
+              <td> </td>
+              <td></td>
+              <td></td>
+              <td>資料庫整合應用開發</td>
+            </tr>
+            <tr>
+              <th scope="row">11:00~12:00</th>
+              <td></td>
+              <td> </td>
+              <td></td>
+              <td></td>
+              <td>資料庫整合應用開發</td>
+            </tr>
+            <tr>
+              <th scope="row">12:00~13:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">08:00~10:00<< /th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <th scope="row">13:00~14:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">08:00~10:00<< /th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <th scope="row">14:00~15:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">15:00~16:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">16:00~17:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>

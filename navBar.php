@@ -7,12 +7,8 @@
             <a href="index.php" class="m-2 text-white bg-dark">Home</a>
             <a href="class.php" class="m-2 text-dark">課表</a>
             <a href="teacher.php" class="m-2 text-dark">教師</a>
-            <a href="" class="m-2 text-dark">簡歷</a>
             <a href="publication.php" class="m-2 text-dark">著作</a>
-            <a href="" class="m-2 text-dark">教學</a>
-            <a href="" class="m-2 text-dark">徒弟</a>
-            <a href="" class="m-2 text-dark">常用連結</a>
-            <?php if (empty($_SESSION)) : ?>
+            <?php if (empty($_SESSION['email'])) : ?>
                 <a href="login.php" class="m-2 text-dark">登入/註冊</a>
             <?php endif ?>
             <?php if (isset($_SESSION['email'])) : ?>

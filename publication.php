@@ -4,7 +4,7 @@ include("fun.php");
 include('mysql_connect.php');
 if (isset($_SESSION['email'])) {
 
-    $sql = "SELECT * FROM 'publication'";
+    $sql = "SELECT * FROM publication";
     $result = mysqli_query($conn, $sql);
 ?>
 
@@ -69,7 +69,7 @@ if (isset($_SESSION['email'])) {
                                     echo "'>";
                                     $aithorQuery = "SELECT * FROM `pub-author` CROSS JOIN `author` on `pub-author`.
                                     `author_id`=`author`.`id` WHERE `pub-author`.`pub_id` = " . $pubRow[`id`] . "ORDER BY `pub-author`.`author_order`";
-                                    $authorResult = mysqli_query($link, $authorQuery);
+                                    $authorResult = mysqli_query($conn, $authorQuery);
                                     while ($authorRow = mysqli_fetch_assoc($authorResult)) {
                                         echo $authorRow['last_name'] . "," . $authorRow['first_name'];
                                         if ($authorRow['isCorresponding'] == 1) {
@@ -81,7 +81,7 @@ if (isset($_SESSION['email'])) {
                                     echo "(" . $pubRow['year'] . "),\"" . $pubRow['title'] . ",\" ";
                                     if ($pubRow['pub_id'] == 1) {
                                         $journalQuery = "SELECT * FROM `journal` WHERE `id` =" . $pubRow['pub_id'];
-                                        $journalResult = mysqli_query($link, $journalQuery);
+                                        $journalResult = mysqli_query($conn, $journalQuery);
                                         $journalRow = mysqli_fetch_assoc($journalResult);
                                         echo "<i>" . $journalRow['title'] . "</i>,";
                                     }
@@ -97,11 +97,11 @@ if (isset($_SESSION['email'])) {
                                     echo $pubRow['year'] . ", pp." . $pubRow['pages'] . ".";
                                     echo "<form style='display:inline;' onsubmit=\"return confirm('Do you really want to delete this paper?');\">
                                     <input type='hidden' name='userID' value='" . $pubRow['id'] . "' />
-                                    <input type='image' src='imgs\delete.png' style = 'width:1.2em;' />
+                                    <input type='image' src='images\delete.png' style = 'width:1.2em;' />
                                     </form>";
                                     echo "<form style='display:inline;'>
                                     <input type = 'hidden' name='userID' value='" . $pubRow['id'] . "'/>
-                                    <input type = 'image' src='imgs\modify.png' style='width:1.2em' />
+                                    <input type = 'image' src='images\modify.png' style='width:1.2em' />
                                     </form>";
                                     echo "</li>";
                                 }
@@ -115,6 +115,7 @@ if (isset($_SESSION['email'])) {
                                 <div class="col-2" style="text-align: right;"><a href="addUser.php" class="btn btn-primary">新增</a></div>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="Book_Chapter" role="tabpanel" aria-labelledby="Book_Chapter-tab">...</div>
                         <div class="tab-pane" id="Other" role="tabpanel" aria-labelledby="Other-tab">...</div>
                     </div>
@@ -132,5 +133,5 @@ if (isset($_SESSION['email'])) {
     </html>
 <?php
 } else {
-    echo '<h1>123</h1>';
+    echo '<h1>請先登入帳號</h1>';
 }
